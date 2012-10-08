@@ -1,0 +1,2 @@
+permalink: /:year/:month/:day/:title 
+exclude: _old_posts 

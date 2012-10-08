@@ -1,0 +1,90 @@
+--- 
+layout: post
+title: PhiloGL version 1.1.0
+categories: [PhiloGL, Visualization]
+---
+
+[PhiloGL](http://senchalabs.github.com/philogl/) version 1.1.0 has been
+released! This version includes a couple of new features like improved
+WebGL detection, linear fog, picking, added primitives like
+Cylinder and Cone and some bug fixes with directional lighting.
+
+## Better hasWebGL
+
+Until now WebGL was currently detected via the existence of the
+`WebGLRenderingContext` object in the `window` object. This check is good to
+see if the browser we're using provides access to the WebGL API, but
+doesn't really check whether the hardware is capable to render WebGL - or
+at least create a WebGL rendering context.
+
+In other words, we could have Firefox 4 installed on a ventilation system
+and get `true` for the check of `!!window.WebGLRenderingContext`.
+
+In order to go a little further on the check I transformed `hasWebGL` into a static
+method that checks whether the `WebGLRenderingContext` exists but also
+checks whether the 3D context can be created. This is a noticeable
+step forward to check for WebGL capable machines. 
+It's worth a small API change (from static property to static
+method). You can check the documentation for this method
+[here](http://senchalabs.github.com/philogl/doc/core.html#PhiloGL:hasWebGL).
+
+## Picking
+
+Picking is the ability to interact with 3D objects in
+the scene via events like *mouseenter* or *click*. Picking can be used by setting `pick` to `true` 
+in the events configuration for the [PhiloGL constructor](http://senchalabs.github.com/philogl/doc/core.html#PhiloGL:constructor). 
+Internally the [Event](http://senchalabs.github.com/philogl/doc/event.html) object uses
+the [Scene pick method](http://senchalabs.github.com/philogl/doc/scene.html#Scene:pick).
+
+For example:
+
+{% highlight js %}
+   //Create App
+    PhiloGL('surface-explorer-canvas', {
+      events: {
+        //enable picking
+        picking: true,
+        //now the model is returned as the target of
+        //the event.
+        onMouseEnter: function(e, model) {
+          model.uniforms.colorUfm = [1, 1, 1, 1];
+        },
+        onMouseLeave: function(e, model) {
+          model.uniforms.colorUfm = [0.5, 0.5, 0.5, 1];
+        }
+      },
+      onError: function() {
+        alert("There was an error while creating the WebGL application");
+      },
+      onLoad: function(app) {
+        /* do stuff with app */
+      }
+    });
+{% endhighlight %}
+
+
+## Fog
+
+Linear fog was added in version 1.0.2, but only now it's official. Fog
+can be selected as a scene *effect* in the configuration object. You can find
+more information about how to configure linear fog [here](http://senchalabs.github.com/philogl/doc/scene.html).
+
+
+## Primitives
+
+I added Cone and Cylinder as new primitives. You can find documentation
+about them [here](http://senchalabs.github.com/philogl/doc/o3d.html).
+
+
+## Mini Demo
+
+I made a video featuring fog, picking and our new primitives. In this particular example I only set cones and spheres as
+pickable objects.
+
+
+<object width="480" height="390"><param name="movie" value="http://www.youtube.com/v/_7Aeo70AEMU?fs=1&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/_7Aeo70AEMU?fs=1&amp;hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="390"></embed></object>
+
+
+I hope you enjoy the new features :) You can [download the library
+here](http://senchalabs.github.com/philogl/).
+

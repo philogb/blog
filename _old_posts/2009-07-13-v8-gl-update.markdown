@@ -1,0 +1,26 @@
+--- 
+wordpress_id: 951
+layout: post
+title: V8-GL Update
+categories: [V8-GL, OpenGL]
+wordpress_url: /?p=951
+---
+I've been quite busy these days. 
+
+I've been answering questions at the <a href="http://groups.google.com/group/javascript-information-visualization-toolkit">JavaScript InfoVis Toolkit Google Group</a>, fixing a couple of bugs for the <a href="http://thejit.org">JIT</a> and putting a lot of effort in <a href="http://github.com/philogb/v8-gl/tree/master/#readme">V8-GL</a>.
+
+Oh right, I was almost forgetting that I have a day job also :S
+
+Anyway, V8-GL kind of took another direction. I've been working on OpenGL ES 2.0 and OpenGL 2.1 bindings. 
+
+OpenGL ES 2.0 bindings are almost complete. Other bindings (like OpenGL 2.1, GLUT and GLU) need some extra work, but they are functional.
+
+[Dean](http://github.com/deanm) helped a lot also. He just translated <a href="http://blog.vlad1.com/2007/11/26/canvas-3d-gl-power-web-style/">Vlad's</a> metatunnel example to work with the new OpenGL ES 2.0 bindings. 
+
+The result's pretty impressive:
+
+<img src="/blog/assets/metatunnel.png" title="Metatunnel on V8-GL!" style="width:500px;" />
+
+You can find some videos of "Metatunnel" implemented in Processing or Canvas3D at <a href="http://www.youtube.com/watch?v=qryxLDujyVk">Youtube</a>. 
+
+The good thing about the <em>V8-GL example</em> is that's a Desktop app coded in JavaScript using V8.

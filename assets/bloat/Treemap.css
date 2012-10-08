@@ -1,0 +1,20 @@
+#infovis {
+  width:1000px;
+  height: 600px;
+  margin: auto;
+  background: #111;
+  -webkit-box-shadow: 0 0 5px #000;
+}
+
+.node {
+  color:#fff;
+  font-size:9px;
+  overflow:hidden;
+  cursor:pointer;
+  -webkit-transition: border-color 200ms;
+  border: 1px solid transparent;
+}
+
+.node:hover {
+ border-color: #9FD4FF;
+}

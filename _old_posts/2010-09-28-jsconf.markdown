@@ -1,0 +1,27 @@
+--- 
+layout: post
+title: JSConf
+categories: [Talks]
+---
+
+[JSConf](http://jsconf.eu/) just finished. It was a great experience: I got to meet a lot of interesting people and attend awesome talks, 
+and I even got the chance to [speak about the toolkit!](http://jsconf.eu/2010/speaker/creating_interactive_data_visu.html)
+
+The slides from my talk are here: 
+
+<div style="width:425px" id="__ss_5284231"><strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/philogb/javascript-infovis-toolkit-create-interactive-data-visualizations-for-the-web" title="JavaScript InfoVis Toolkit - Create interactive data visualizations for the web">JavaScript InfoVis Toolkit - Create interactive data visualizations for the web</a></strong><object id="__sse5284231" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=jsconfeushort-100925070735-phpapp01&stripped_title=javascript-infovis-toolkit-create-interactive-data-visualizations-for-the-web&userName=philogb" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/><embed name="__sse5284231" src="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=jsconfeushort-100925070735-phpapp01&stripped_title=javascript-infovis-toolkit-create-interactive-data-visualizations-for-the-web&userName=philogb" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="355"></embed></object><div style="padding:5px 0 12px">View more <a href="http://www.slideshare.net/">presentations</a> from <a href="http://www.slideshare.net/philogb">philogb</a>.</div></div>
+
+All talks were great, some of the talks I really enjoyed were:
+
+ - [Proxy Objects by Brendan Eich](http://jsconf.eu/2010/speaker/be_proxy_objects.html)
+ - [Getting functional with (fab) by Jed Schmidt](http://jsconf.eu/2010/speaker/getting_functional_with_fab.html)
+ - [Loopage by Douglas Crockford](http://jsconf.eu/2010/speaker/loopage_by_douglas_crockford.html)
+
+...and [more](http://jsconf.eu/2010/speakers.html).
+
+You can follow [JSConf](http://twitter.com/jsconfeu) for updates about when the videos will be released.
+
+Finally I want to thank [janl](http://twitter.com/janl/), [cramforce](http://twitter.com/cramforce/) and [hblank](http://twitter.com/hblank) 
+for gathering all javascripters in Berlin, making an excellent event, and giving me the chance to introduce [the toolkit](http://thejit.org/) to the JS crowd. 
+You guys are awesome!
+

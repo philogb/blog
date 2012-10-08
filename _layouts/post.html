@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div id="post">
+
+<div>
+	{% if page.previous %}
+	<div class="nav-previous">
+	  <a href="/blog/{{ page.previous.url }}">&#171; {{ page.previous.title }}</a>
+	</div>
+	{% endif %}
+	{% if page.next %}
+	<div class="nav-next">
+	  <a href="/blog/{{ page.next.url }}">{{ page.next.title }} &#187;</a>
+	</div>
+	{% endif %}
+</div>
+<div style="clear:both"></div>
+<h1>{{ page.title }}</h1>
+{% if page.categories %}
+<div class="description">
+  <em>Posted in: </em>
+  {% for cat in page.categories %}
+    {% if forloop.index0 == 0 %}
+    {{ cat }}
+    {% else %}
+    , {{ cat }}
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+{{ content }}
+
+
+<div style="clear:both">
+	{% if page.previous %}
+	<div class="nav-previous">
+	  <a href="/blog/{{ page.previous.url }}">&#171; {{ page.previous.title }}</a>
+	</div>
+	{% endif %}
+	{% if page.next %}
+	<div class="nav-next">
+	  <a href="/blog/{{ page.next.url }}">{{ page.next.title }} &#187;</a>
+	</div>
+	{% endif %}
+</div>
+
+<a href="#disqus_thread">Comments</a>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /**
+    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread]
+    */
+  (function() {
+   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+   dsq.src = 'http://noumenablog.disqus.com/embed.js';
+   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=noumenablog">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+<script type="text/javascript">
+var disqus_shortname = 'noumenablog';
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'http://disqus.com/forums/noumenablog/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+</div>

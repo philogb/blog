@@ -1,0 +1,33 @@
+---
+layout: nil
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Nicolas Garcia Belmonte</title>
+ <link href="http://philogb.github.com/blog/feed.xml" rel="self"/>
+ <link href="http://philogb.github.com/blog/"/>
+ <updated>{{ site.time | date_to_xmlschema }}</updated>
+ <id>http://blog.thejit.org/</id>
+ <author>
+   <name>Nicolas Garcia Belmonte</name>
+   <email>philogb@gmail.com</email>
+ </author>
+
+ {% for post in site.posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://philogb.github.com/blog{{ post.url }}"/>
+   <updated>{{ post.date | date_to_xmlschema }}</updated>
+   <id>http://philogb.github.com/blog{{ post.id }}</id>
+   <content type="html">
+    {% if post.wordpress_id %}
+      Sorry, the contents of this post are not available in the RSS.
+    {% else %}
+      {{ post.content | xml_escape }}
+    {% endif %}
+   </content>
+ </entry>
+ {% endfor %}
+
+</feed>

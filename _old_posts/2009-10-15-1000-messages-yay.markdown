@@ -1,0 +1,23 @@
+--- 
+wordpress_id: 1207
+layout: post
+title: 1000 Messages, yay!
+categories: [JavaScript InfoVis Toolkit]
+wordpress_url: /?p=1207
+---
+Just a quick post to say that currently the <a href="http://groups.google.com/group/javascript-information-visualization-toolkit?hl=en">Google Group</a> for the JavaScript InfoVis Toolkit has more than 1000 messages!
+
+The <a href="http://thejit.org">JavaScript InfoVis Toolkit</a> Google Group is the main entry point for library related discussions. 
+
+Currently the Group has 265 members and more than 1000 messages.
+
+<h4>About Searching the Google Group</h4>
+Sometimes searching via Google Web can lead to more pertinent results than searching in the Group. So if searching for "hypertree labels" in the group doesn't give you pertinent results you can always try:
+<pre>
+Hypertree labels site:http://groups.google.com/group/javascript-information-visualization-toolkit
+</pre>
+
+via Google Web.
+
+<h4>I Wish...</h4>
+...people would tell me about the projects they do with the <a href="http://thejit.org">JIT</a>, either at the google group, or by <a href="http://thejit.org/about">mail</a>. I'm very curious about the true potential of this library, and I'd like to know more about where and how it's used. It's disappointing to learn about JIT projects <a href="http://www.reddit.com/r/programming/comments/9r4sh/javascripts_sunburst_visualization/c0e224h">by chance</a>.

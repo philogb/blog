@@ -1,0 +1,32 @@
+--- 
+layout: post
+title: PhiloGL 1.1.1 and JavaScript InfoVis Toolkit 2.0.1 released
+categories: [JavaScript InfoVis Toolkit, PhiloGL, Visualization]
+---
+
+Just a quick post to let you know about two patch releases for the
+[JavaScript InfoVis Toolkit](http://thejit.org/) and [PhiloGL](http://senchalabs.github.com/philogl/)
+respectively.
+
+### JavaScript InfoVis Toolkit 2.0.1
+
+The new patch release for the [JavaScript InfoVis Toolkit](http://thejit.org/) includes many
+bug fixes (that you can find [here](https://github.com/philogb/jit/commits/master)) and new 
+configuration options for Area, Pie and Bar charts.
+
+As I mentioned before I'm very excited that the project has been selected for the [Google Summer of
+Code 2011 program](http://code.google.com/soc/), and that two student applications have been already accepted. 
+The selected students will work on 
+making the toolkit better by implementing new visualizations like
+Voronoi TreeMaps, Scatter Charts, Line Charts and other work related to code design and refactoring. Expect some 
+interesting updates on the project in the next few months!
+
+### PhiloGL 1.1.1
+
+[PhiloGL](http://senchalabs.github.com/philogl/) version 1.1.1 has been
+released with a bunch of bug fixes and improvements. Multiple point
+lights (up to 50) are supported now. You can check a complete 
+changelog [here](https://github.com/senchalabs/philogl/commit/b74faf71a663f4be14618ff4721a66d8ca8b7af3).
+
+
+

@@ -1,0 +1,20 @@
+--- 
+layout: post
+title: Jekyll
+categories: [JavaScript]
+---
+
+So I just moved from WordPress to [Jekyll](http://github.com/mojombo/jekyll), a Ruby based static site generator. 
+Moving from WordPress wasn't as pleasant as I thought, and the site might have some "bugs" (let me know if you find one!) 
+but I'm much more happy to be writing this post in my favorite editor, and not having to rely on WordPress, PHP or MySQL to run the blog.
+
+While moving stuff from WordPress I found a few interesting old posts, I hope you find them interesting too:
+
+ - [Memoization in JavaScript](/2008/09/05/memoization-in-javascript/)
+ - [Generic functions and JavaScript](/2009/02/08/generic-functions-and-javascript/)
+ - [Sharp Variables](/2009/03/24/sharp-variables/)
+ - [Interactive Visualization of genealogical graphs video](/2009/05/11/interactive-visualization-of-genealogical-graphs/)
+
+...oh well, there are more interesting posts, so I recommend you to go to the [main page](/) to see a list of them. 
+
+If you find some bugs please let me know!

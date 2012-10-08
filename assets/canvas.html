@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    function canvasTest() {
+      var canvas= document.createElement('canvas');
+      alert(typeof canvas.getContext('2d').fillText);
+      var ctx = canvas.getContext('2d');
+      canvas.widh = 500;
+      canvas.height = 500;
+      document.body.appendChild(canvas);
+      ctx.font = 'bold 12px Arial';
+      ctx.fillStyle= '#000';
+      ctx.fillText("Hello World", 200, 200);
+
+    }
+  </script>
+</head>
+<body onload="canvasTest();"></body>
+</html>

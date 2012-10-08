@@ -1,0 +1,219 @@
+--- 
+layout: post
+title: PhiloGL 1.4.0
+categories: [JavaScript, PhiloGL, Visualization]
+---
+
+I'm very excited to announce that [PhiloGL](http://senchalabs.github.com/philogl) version 1.4.0 has been
+released!
+
+This release focuses on two main things: a better picking algorithm
+that caches scene rendering and a simple image post-processing chain to add some nice fragment
+shader effects when rendering a scene.
+
+Both these features are implemented in a revamped [World Flights](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights2/)
+example I just released, so let's take a look at how these things are
+implemented in the example.
+
+
+### World Flights (revisited)
+
+![World Flights Image](http://senchalabs.github.com/philogl/img/marquee/worldflights2.png)
+
+[World Flights](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights2/)
+ is a data visualization that shows flying routes information for various airlines 
+around the world. For 200 airlines, more than 57.000 flights and 6.000 destinations are displayed. 
+You can find more information on the example [here](http://philogb.github.com/world-flights/).
+
+You can access the example [here](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights2/).
+
+
+### Image post processing
+
+There's a nice neon effect in the airline routes as well as in the
+cities displayed in this example. This is done by rendering two
+different scenes; one with a "black" planet:
+
+![World Flights Image](/blog/assets/worldflights/1.png)
+
+...and another one with the current texture for the planet:
+
+![World Flights Image](/blog/assets/worldflights/2.png)
+
+
+Here's the code that renders them to a `world` and `world2` FBOs 
+and their associated `world-texture` and `world2-texture` textures:
+
+{% highlight js %}
+
+  app.setFrameBuffer('world', true);
+  program.earth.use();
+  gl.clear(clearOpt);
+  gl.viewport(0, 0, 1024, 1024);
+  //do not use a texture but paint it black
+  program.earth.setUniform('renderType',  0);
+  scene.renderToTexture('world');
+  app.setFrameBuffer('world', false);
+
+  app.setFrameBuffer('world2', true);
+  program.earth.use();
+  gl.clear(clearOpt);
+  gl.viewport(0, 0, 1024, 1024);
+  //use a regular planet texture
+  program.earth.setUniform('renderType',  -1);
+  scene.renderToTexture('world2');
+  app.setFrameBuffer('world2', false);
+
+{% endhighlight %} 
+
+These two textures are then combined to generate the screen image:
+
+{% highlight js %}
+  Media.Image.postProcess({
+    fromTexture: ['world-texture', 'world2-texture'],
+    toScreen: true,
+    program: 'glow',
+    width: 1024,
+    height: 1024
+  });
+{% endhighlight %}
+
+The `glow` fragment shader will take these two generated textures,
+create a bloom filter for the one with the black planet, and add it to the
+one that has the regular textured planet and provide a result for that:
+
+{% highlight js %}
+#ifdef GL_ES
+precision highp float;
+#endif
+
+#define BLUR_LIMIT 4 
+#define BLUR_LIMIT_SQ 64.0
+
+varying vec2 vTexCoord1;
+
+uniform bool hasTexture1;
+uniform sampler2D sampler1;
+
+uniform bool hasTexture2;
+uniform sampler2D sampler2;
+
+void main(void) {
+  vec4 fragmentColor = vec4(0.0, 0.0, 0.0, 0.0);
+  float dx;
+  float dy;
+
+  if (hasTexture1 && hasTexture2) {
+    //Add glow
+    for (int i = - BLUR_LIMIT; i < BLUR_LIMIT; i++) {
+      dx = float(i) / 512.0;
+      for (int j = - BLUR_LIMIT; j < BLUR_LIMIT; j++) {
+        dy = float(j) / 512.0;
+        fragmentColor += texture2D(sampler1, vec2(vTexCoord1.s + dx, vTexCoord1.t + dy)) / BLUR_LIMIT_SQ;
+      }
+    }
+    //Add real image
+    fragmentColor += texture2D(sampler2, vec2(vTexCoord1.s, vTexCoord1.t));
+  }
+  gl_FragColor = vec4(fragmentColor.rgb, 1.0);
+}
+
+{% endhighlight %}
+
+This is not the best way to make a bloom filter since it's `O(N * N)`, but
+it could be easily transformed into a two-pass bloom filter with the
+`postProcess` chaining API:
+
+{% highlight js %}
+  //Make a horizontal pass
+  Media.Image.postProcess({
+    fromTexture: 'world2-texture',
+    toFrameBuffer: 'bloom1',
+    program: 'bloom',
+    width: 1024,
+    height: 1024,
+    uniforms: {
+      'orientation': 1
+    }
+  //Make a vertical pass on the result
+  }).postProcess({
+    fromTexture: 'bloom1-texture',
+    toFrameBuffer: 'bloom2',
+    program: 'bloom',
+    width: 1024,
+    height: 1024,
+    uniforms: {
+      'orientation': 0
+    }
+  //Combine the result to the original texture
+  }).postProcess({
+    fromTexture: ['world-texture', 'bloom2-texture'],
+    toScreen: true,
+    program: 'glow',
+    width: 1024,
+    height: 1024
+  });
+{% endhighlight %}
+
+
+The result is:
+
+![World Flights Image](/blog/assets/worldflights/3.png)
+
+
+### Lazy Picking
+
+The World Flights example displays around 6.000 cities served by the
+airlines. If you hover those cities a tooltip will display showing
+information about the city:
+
+
+![World Flights Picking](http://philogb.github.com/blog/assets/img/worldflights.picking.png)
+
+
+As mentioned in older posts, I implemented the color picking algorithm
+which assigns a different "picking color" to each city, then renders all
+6000 cities to a texture with those picking colors and retrieves the
+color of the pixel pointed by the mouse. From that color it's easy to
+identify which city has been hovered.
+
+The current algorithm though renders this alternate scene each time the
+mouse moves over the canvas. A better approach would be to only take a snapshot of
+the scene when it's updated in some way (the planet is dragged and
+dropped, a new airline is selected and the earth moves, etc.).
+
+This can now be done by setting `lazyPicking` to `true` and then using a
+`scene.resetPicking()` method when the time is right to take a new
+snapshot. For all other cases a cache of the capture stored in a typed
+array will be used improving the performance of the algorithm:
+
+{% highlight js %}
+events: {
+  //enable picking and lazy picking
+  picking: true,
+  lazyPicking: true,
+  //remove the center origin option for picking
+  centerOrigin: false,
+  onDragStart: function(e) {
+    //do stuff...
+  },
+  onDragMove: function(e) {
+    //do stuff to rotate the earth...
+  },
+  onDragEnd: function(e) {
+    //reset the picking by removing the cached image capture
+    this.scene.resetPicking();
+  },
+//more code here...
+{% endhighlight %}
+
+
+You can find more information on both these features in the [Media](http://senchalabs.github.com/philogl/doc/media.html) and
+[Scene](http://senchalabs.github.com/philogl/doc/scene.html#Scene:resetPicking) APIs.
+
+
+### Thanks
+
+Thanks to [Luz Caballero](http://uxnerd.com/) for helping me out with the
+design of World Flights!
+

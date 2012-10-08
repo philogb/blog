@@ -1,0 +1,58 @@
+--- 
+wordpress_id: 1065
+layout: post
+title: Version 1.1.3
+categories: [JavaScript]
+wordpress_url: /?p=1065
+---
+I just <a href="http://github.com/philogb/jit">tagged</a> the <a href="http://thejit.org">JavaScript InfoVis Toolkit</a> with version 1.1.3. It's been some time since the last release, and I wanted to use this post to make a summary of the changes and to describe some of the new features that have been added to the library.
+
+I'll start with the new features:
+
+<h4 id="spacetree-switchalignment">SpaceTree: SwitchAlignment</h4>
+I added some new global configuration properties to the SpaceTree: <em>align</em> and <em>indent</em>.
+<em>Align</em> sets the alignment of the tree to <em>center</em>, <em>left</em> and <em>right</em>:
+
+<img src="/blog/assets/spacetree-center.png" style="border: 1px solid cyan; margin: 7px auto; padding: 1px;" />
+
+<img src="/blog/assets/spacetree-left.png" style="border: 1px solid cyan; margin: 7px auto; padding: 1px;" />
+
+<img src="/blog/assets/spacetree-right.png" style="border: 1px solid cyan; margin: 7px auto; padding: 1px;" />
+
+The <em>indent</em> parameter sets an offset between a parent and its children when the alignment is <em>left</em> or <em>right</em>. You can also use the <a href="http://thejit.org/docs/files/Spacetree-js.html#ST.switchAlignment">switchAlignment</a> method for changing the alignment of the tree with an animation.
+
+<h4 id="spacetree-multiple-nodes">SpaceTree: Multiple nodes in path</h4>
+I added two new methods to the SpaceTree: <a href="http://thejit.org/docs/files/Spacetree-js.html#ST.addNodeInPath">addNodeInPath</a> and <a href="http://thejit.org/docs/files/Spacetree-js.html#ST.clearNodesInPath">clearNodesInPath</a>.
+These two methods allow you to add a node to the "selected-nodes" path. When a node belongs to the "selected-nodes" path it remains always visible (as in always expanded).
+
+I made this small video to show the feature:
+
+<object width="500" height="385"><param name="movie" value="http://www.youtube.com/v/wGwyQVFYeV4&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/wGwyQVFYeV4&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="500" height="385"></embed></object>
+
+<h4 id="spacetree-multitree">SpaceTree: MultiTree</h4>
+I added a SpaceTree configuration property called <em>multitree</em>.
+If <em>multitree=true</em>, the visualization will search for the <em>$orn</em> data property in each node and display the subtrees according to their orientation.
+
+In this example I set <em>multitree=true</em> and set <em>$orn='left'</em> for some nodes and <em>$orn='right'</em> for others. This way I create a partition of the tree:
+
+<object width="500" height="385"><param name="movie" value="http://www.youtube.com/v/6BxJDfJ3w2o&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/6BxJDfJ3w2o&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="500" height="385"></embed></object>
+
+I also use the <a href="http://thejit.org/docs/files/Spacetree-js.html#ST.setRoot">setRoot</a> method to set the clicked node as root for the visualization. This way the clicked node is centered and a centrifugal view from that node is drawn.
+
+<h4>Bug Fixes</h4>
+I've been fixing a couple of bugs also, most of them have to do with Treemaps:
+
+<ul>
+<li><a href="http://github.com/philogb/jit/issues/closed#issue/8">Refreshing treemaps keeps old tooltips over</a> <em>(Thanks <a href="http://github.com/arielkempf">Ariel Kempf</a>)</em></li>
+<li><a href="http://github.com/philogb/jit/issues/closed#issue/6">Treemap: change box filling order from towards top right, to towards bottom right</a> <em>(Thanks <a href="http://github.com/timbunce">Tim Bunce</a>)</em></li>
+<li><a href="http://github.com/philogb/jit/issues/closed#issue/5">Treemap: patch to fix gaps between boxes</a> <em>(Thanks <a href="http://github.com/timbunce">Tim Bunce</a>)</em></li>
+<li><a href="http://github.com/philogb/jit/issues/closed#issue/4">Treemap: avoid creating boxes too small to see</a> <em>(Thanks <a href="http://github.com/timbunce">Tim Bunce</a>)</em></li>
+<li><a href="http://github.com/philogb/jit/issues/closed#issue/3">Add a boolean to the fx.clearLabels method for clearing all labels regardless of any condition.</a></li>
+</ul>
+
+I also want to thank <a href="http://weltermann17.wordpress.com/">Guido Schmidt</a> for his interest in the library and work on the GWT JIT component.
+
+There's also been some JIT development for <a href="http://grails.org/plugin/jit">Grails</a> done by <a href="http://www.odelia-technologies.com/">Bertrand Goetzmann</a>.
+
+Anyway, things are looking good! :)
+

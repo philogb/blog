@@ -1,0 +1,13 @@
+--- 
+wordpress_id: 18
+layout: post
+title: JIT version 1.0.2a
+categories: [JavaScript InfoVis Toolkit]
+wordpress_url: /?p=18
+---
+Just dropping by to say I just released <a href="/blog/assets/jit.zip" target="_blank">version 1.0.2a</a> of the javascript infovis toolkit. You can also download it from the <a href="http://thejit.org">main page</a>.<br />
+It fixes some known bugs on the Spacetree and Hyperbolic Tree visualizations.<br />
+I'd like to thank <a href="http://www.opencrx.org/">OpenCRX</a> and Charles D. Aylward for pointing those errors out.<br />
+I also used version 1.4 of Natural Docs to make the docs. <br />
+Please let me know if you find more errors.<br />
+Bye! :)

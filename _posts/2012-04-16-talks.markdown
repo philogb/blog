@@ -1,0 +1,20 @@
+--- 
+layout: post
+title: Next Talks
+categories: [Talks]
+---
+
+I'll be giving a couple of talks related to data visualization,
+JavaScript and Web standards in the next couple of weeks:
+
+* Apr. 20 - Tech Talk on Data Visualization and Web Standards at
+  [Stanford ACM](http://stanfordacm.com/). It's free and open to the
+public so if you're around please come and say hi!
+
+* May 19  - I'll be at [JSConf Argentina](http://jsconf.com.ar) with a
+  more WebGL / JavaScript focused talk. I'm really excited to be
+presenting in my country again, last time I presented it was at
+Microsoft for [BarCamp BA](http://barcamp.com.ar/) like six years ago!
+
+I hope to see you there!
+

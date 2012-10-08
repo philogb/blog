@@ -1,0 +1,99 @@
+--- 
+layout: post
+title: PhiloGL 1.2.0 released
+categories: [JavaScript, PhiloGL, Visualization]
+---
+
+I'm very excited to announce that [PhiloGL](http://senchalabs.github.com/philogl) version 1.2.0 has been
+released!
+
+This release adds a lot of goodies to the Framework, like a much better
+design for multiple program management, a better design for picking
+enabling us to have finer grain picking, a brand new `Quat`
+class for quaternions and a couple of new primitives and improvements in O3D. All this
+with some [updated documentation](http://senchalabs.github.com/philogl/docs.html) and 
+a new [demo](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights/)!
+
+### Multiple program management
+
+We always had the possibility to create multiple programs and use them
+in a PhiloGL application (see [lesson 13](http://senchalabs.github.com/philogl/PhiloGL/examples/lessons/13/)), but in
+a more object-oriented model of applications we might want to assign
+programs to objects themselves than manually managing programs here and
+there.
+
+You can define multiple programs right in the main [PhiloGL constructor
+function](http://senchalabs.github.com/philogl/doc/index.html#PhiloGL:constructor) as an array of program 
+configurations with a specified id:
+
+{% highlight js %}
+PhiloGL({
+  program: [{
+    id: 'program1',
+    from: 'uris',
+    vs: './vertex1.vs.glsl',
+    fs: './fragment1.fs.glsl'
+  }, {
+    id: 'program2',
+    from: 'uris',
+    vs: './vertex2.vs.glsl',
+    fs: './fragment2.fs.glsl'
+  }]
+  //other options here...
+});
+{% endhighlight %}
+
+Then you can set a program id to any model you like by instanciating a
+model with:
+
+{% highlight js %}
+var myObject = new O3D.Model({
+  program: 'program1'
+  //other options here...
+});
+{% endhighlight %}
+
+and then each model will have a program assigned and used before being
+rendered. Easy!
+
+### Finer grain picking
+
+The picking algorithm used in PhiloGL is a color picking
+algorithm. Each model is assigned a different color and the scene is 
+rendered to a texture. Then, the pixel pointed by the mouse
+position is retrieved from the texture and the color of that pixel is 
+used to identify the model.
+
+Sometimes we want to know more than just which object has been picked. For
+example, we might want to know which face of that object has been
+picked. In that case the [O3D]((http://senchalabs.github.com/philogl/doc/o3d.html) constructor options
+`pickingColors` and `pick` are useful. By defining your own set of per
+vertex colors and a method that given a pixel returns special
+information on what part of the object has been retrieved, then it is
+possible to have finer grain picking. For more information about how to 
+use this you can take a look at the World Flights example or go to the
+[Google group of the framework](http://groups.google.com/group/philogl).
+
+### More stuff
+
+A [Quat]((http://senchalabs.github.com/philogl/doc/math.html#Quat) class has been added and also other interesting 
+options in [O3D.Model](http://senchalabs.github.com/philogl/doc/o3d.html#O3D:Model:constructor) constructors have been included, 
+like an `attributes` object to define buffers and attributes per model.
+
+### World Flights
+
+[World Flights](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights/) is a data visualization powered by PhiloGL that 
+displays the routes of all major airlines in the globe. Red markers
+indicate cities served by airports, and blue curves show the routes each
+airline makes and their destinations. You can drag and drop the globe,
+and also select new airlines from the controls on the right. 
+The link to the application is [here](http://senchalabs.github.com/philogl/PhiloGL/examples/worldFlights/).
+
+![World Flights image](http://senchalabs.github.com/philogl/img/marquee/worldflights.png)
+
+### WebGL camp #3 at Google HQ
+
+Last but not least, I'll be making a presentation on
+PhiloGL at [WebGL camp](http://webglcamp.com/) this Friday. Regirstration is still open, so I hope to see
+you there!
+

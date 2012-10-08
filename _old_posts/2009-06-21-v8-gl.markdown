@@ -1,0 +1,96 @@
+--- 
+wordpress_id: 925
+layout: post
+title: V8-GL
+categories: [V8-GL, OpenGL]
+wordpress_url: /?p=925
+---
+I've been doing a couple of changes to the <a href="http://thejit.org">JavaScript InfoVis Tookit</a> lately, which I'll describe in some other post, but most important I've been working on a new project I'm really excited about that's called <a href="http://github.com/philogb/v8-gl/tree/master#readme">V8-GL</a>.
+
+<h4>What's V8-GL?</h4>
+
+<img src="/blog/assets/v8gl2.png" style="width:500px" title="2D and 3D Desktop Hardware Accelerated Graphics in JS" />
+
+[V8-GL](http://github.com/philogb/v8-gl/tree/master#readme) intends to provide a high-level JavaScript API for creating 2D/3D hardware accelerated desktop graphics.
+
+In other words, you can hack some JavaScript code that opens a desktop window and renders some 3D hardware accelerated graphics. Bindings are made using the <a href="http://code.google.com/p/v8/">V8 JavaScript engine</a>.
+
+<h4>Example</h4>
+I wrote a small example that animates a rotating Icosahedron. This example uses timers, colors and lighting among other things:
+
+{% highlight js %}
+//Add array iteration method
+Array.prototype.each = function(f) {
+  var len = this.length;
+  for ( var i = 0; i < len; i++) f(this[i]);
+};
+
+//Initializes 3D rendering
+function initRendering() {
+  "DEPTH_TEST COLOR_MATERIAL LIGHTING LIGHT0 NORMALIZE COLOR_MATERIAL"
+    .split(" ").each(function(elem) {
+    Gl.Enable(Gl[elem]);
+  });
+}
+
+//angle variable
+var angle = 0;
+
+//Draws the 3D scene
+function drawScene() {
+  //Set global color and drawing properties
+  Gl.Clear(Gl.COLOR_BUFFER_BIT | Gl.DEPTH_BUFFER_BIT);
+  Gl.MatrixMode(Gl.MODELVIEW); 
+  Gl.LoadIdentity();
+  Gl.Translatef(0.0, 0.0, -5.0);
+  //Set diffuse and positioned lights
+  Gl.LightModelfv(Gl.LIGHT_MODEL_AMBIENT, [0.3, 0.3, 0.3, 1.0]);
+  Gl.Lightfv(Gl.LIGHT0, Gl.DIFFUSE, [0.4, 0.4, 0.4, 1.0]);
+  Gl.Lightfv(Gl.LIGHT0, Gl.POSITION, [5.0, 5.0, 5.0, 1.0]);
+  //Rotate and plot Icosahedron
+  Gl.Rotatef(angle, 1.0, 1.0, 1.0);
+  Gl.Color3f(0.5, 0.0, 0.8);
+  Glut.SolidIcosahedron(2.5);
+  //Render
+  Glut.SwapBuffers(); 
+}
+
+(function() {
+  //Initialize Glut
+  Glut.Init();
+  Glut.InitDisplayMode(Glut.DOUBLE | Glut.RGB | Glut.DEPTH);
+  Glut.InitWindowSize(400, 400); //Set the window size
+  //Create the window
+  Glut.CreateWindow("OpenGL on V8 baby!");
+  initRendering();
+  //Set drawing callback
+  Glut.DisplayFunc(drawScene);
+  //Set resize window callback
+  Glut.ReshapeFunc(function(w, h) {
+    var gl = { 'Viewport': [0, 0, w, h], 'MatrixMode': [Gl.PROJECTION], 'LoadIdentity': [] };
+    for (var i in gl) Gl[i].apply(this, gl[i]);
+    Glu.Perspective(45.0, w / h, 1.0, 200.0);
+  });
+  //Set timeout callback
+  Glut.TimerFunc(25, function() {
+    angle += 2.0;
+    if (angle > 360) angle -= 360;
+    Glut.PostRedisplay();
+    Glut.TimerFunc(25, arguments.callee, 0);
+  }, 0);
+  //Start the main loop.
+  Glut.MainLoop();
+})();
+{% endhighlight %}
+
+OpenGL devs. might recognize the API exposed through the Gl, Glu and Glut objects.
+
+<h4>Status</h4>
+Currently 80% of the OpenGL API is implemented. OpenGL APIs are exposed through the Gl, Glu and Glut global objects.
+
+However, like I said before, this project is not just about making OpenGL bindings for JavaScript through V8, but to provide a higher level API.
+
+Although this project is in current development you can already clone the repo and follow the <em>Download</em> instructions at the <a href="http://github.com/philogb/v8-gl/tree/master#readme">V8-GL project page</a> for creating some cool examples.
+
+Hope you like it :)
+

@@ -1,0 +1,97 @@
+--- 
+layout: post
+title: PhiloGL 1.3.0 released
+categories: [JavaScript, PhiloGL, Visualization]
+---
+
+Just a quick post to announce that [PhiloGL](http://senchalabs.github.com/philogl) version 1.3.0 has been
+released!
+
+I've been working hard on this new release, which is mainly focused on
+many performance improvements and the ability to have reflection and
+refraction available in the default shaders.
+
+
+### Performance Improvements
+
+Performance improvements happened on three different places of the
+framework:
+
+
+**Math functions**
+
+Math functions for Vector and Matrix operations are faster than ever. I
+changed the inner implementation of the math methods to use typed arrays
+whenever possible. The result is an amazing performance improvement that
+can be seen on the WebGL Matrix Benchmarks for
+[Safari](/blog/assets/matrix-bench/safari.png),
+[Firefox](/blog/assets/matrix-bench/firefox.png)
+and [Chrome](/blog/assets/matrix-bench/chrome.png) (these tests were made on a 13-inch MacBook Pro Core 2
+Duo).
+
+The API for the math module has changed a little bit. I explain most
+of the API changes [in the documentation](http://senchalabs.github.com/philogl/doc/math.html) (look for *new from version 1.3*).
+
+
+**Deep typed array integration in O3D.Models**
+
+I changed how attributes where handled by models in the [O3D module](http://senchalabs.github.com/philogl/doc/o3d.html),
+integrating typed arrays very deep and reusing them whenever possible.
+In order to do this I created getters and setters for most of the model
+attributes like `vertices`, `normals`, `color`, etc. so you can feed to 
+those properties either a typed array or a simple array of values and
+they will be converted internally into a typed array. The typed array will
+be reused whenever possible. When accessing some of these properties,
+you will always get a typed array too; even if you didn't assign one to
+that property.
+
+**Micro Optimizations**
+
+Did you know that using `forEach` instead of a for-loop can be up to
+[50% slower in most browsers?](http://jsperf.com/for-vs-foreach/9). Some
+micro-optimizations take care of changing `forEach` calls into regular
+for-loops in the main rendering loop code.
+
+
+### Reflection / Refraction
+
+I added the ability to have reflection and refraction in O3D. There are
+two new properties in [O3D.Model](http://senchalabs.github.com/philogl/doc/o3d.html#O3D:Model:constructor): 
+`reflection` and `refraction` which indicate the reflection and
+refraction index correspondingly.
+
+
+I created two simple demos to demonstrate some of the new features in the
+framework.
+
+The first one uses the marching cubes algorithm and web-workers as a
+divide and conquer technique to render reflective metaballs. I also use
+cube map textures and the new reflection index. You can access the
+example [here](http://senchalabs.github.com/philogl/PhiloGL/examples/metaballs/).
+
+![Reflective Metaballs image](http://senchalabs.github.com/philogl/img/marquee/metaballs.png)
+
+
+The second example displays an interesting technique to render
+quaternion julia sets. Quaternion julia sets are four dimensional fractals that are
+created by using the same formula than the one used with two dimensional
+fractals, `Zn+1 = Zn + C`, but instead of using complex numbers as `Z` we
+use hyper-complex numbers called [quaternions](http://en.wikipedia.org/wiki/Quaternion). 
+Once we obtain the four-dimensional shape, what we do is project
+it into a three dimensional space to get "the shadow" of the four
+dimensional object. A very interesting article into how this works and
+also how this can be fully calculated via a fragment shader can be found
+[here](http://www.devmaster.net/forums/showthread.php?t=4448). I really
+enjoyed reading that article and recommend it to anyone interested in
+math :)
+
+Anyway, you can access the example [here](http://senchalabs.github.com/philogl/PhiloGL/examples/quaternion/).
+
+![Quaternion Julia Set image](http://senchalabs.github.com/philogl/img/marquee/quaternion.png)
+
+
+### SIGGRAPH 2011 WebGL BOF
+
+Last but not least, I'll be making a presentation on PhiloGL at [SIGGRAPH
+2011](http://www.siggraph.org/s2011/) in Vancouver on August 10th. If you're there, come say hello!
+

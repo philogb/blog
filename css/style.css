@@ -1,0 +1,202 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+}
+
+body {
+  background-color: white;
+  font: 13px 'Droid Sans', helvetica, arial, clean, sans-serif;
+  *font-size: small;
+  text-align: center;
+}
+
+h1 {
+  margin: 0.7em 0;
+  line-height: 1.2em;
+}
+
+h2 {
+  font-size: 1.1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: #00a;
+}
+
+a:hover {
+  color: black;
+}
+
+a:visited {
+  color: #00a;
+}
+
+table {
+  font-size: inherit;
+  font: 100%;
+}
+
+#home {
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.nav-previous {
+  float: left;
+  text-align: left;
+  width:50%;
+  margin: 10px 0;
+  font-size: 0.7em;
+}
+
+.nav-next {
+  float: left;
+  text-align: right;
+  width:50%;
+  margin: 10px 0;
+  font-size: 0.7em;
+}
+
+.nav-previous a, .nav-next a {
+  color: #555;
+}
+
+ul.posts {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+ul.posts li {
+  line-height: 1.75em;
+}
+
+ul.posts span {
+  color: #aaa;
+  font-family: Monaco, "Courier New", monospace;
+  font-size: 80%;
+}
+
+
+.site {
+  font-size: 110%;
+  text-align: justify;
+  width: 500px;
+  margin: 3em auto 2em auto;
+  line-height: 1.5em;
+}
+
+.title {
+  color: #a00;
+  font-weight: bold;
+  margin-bottom: 2em;
+}
+
+.site .title a {
+  color: #a00;
+  text-decoration: none;
+}
+
+.site .title a:hover {
+  color: black;
+}
+
+.site .title a.extra {
+  color: #aaa;
+  text-decoration: none;
+  margin-left: 1em;
+}
+
+.site .title a.extra:hover {
+  color: black;
+}
+
+.site .meta {
+  color: #aaa;
+}
+
+.site .footer {
+  font-size: 80%;
+  color: #666;
+  border-top: 4px solid #eee;
+  margin-top: 2em;
+  overflow: hidden;
+}
+
+#post {
+  width: 500px;
+  margin-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+#post .description {
+  font-size: 0.7em;
+}
+
+
+#sidebar {
+  font-size: 0.85em;
+  width: 500px;
+  line-height: 1.4em;
+}
+
+#bio img {
+  border: 1px solid cyan;
+  padding: 3px;
+  float: left;
+  margin-bottom: 7px;
+  margin-right: 15px;
+  width: 80px;
+}
+
+#bio > div {
+  color: #333;
+}
+
+#projects {
+  margin-top: 14px;
+}
+
+#projects ul li {
+  display: inline-block;
+  margin: 5px;
+}
+
+/* #projects ul {*/
+/*   list-style-position: inside;*/
+/* }*/
+
+/* #projects ul li {*/
+/*   margin-top: 5px;*/
+/* }*/
+
+/* standard */
+
+#post pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+
+#post ul,
+#post ol {
+  margin-left: 1.35em;
+  margin-bottom: 1em;
+}
+
+#post code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  font-size: 85%;
+  padding: 0 .2em;
+}
+
+#post pre code {
+  border: none;
+}

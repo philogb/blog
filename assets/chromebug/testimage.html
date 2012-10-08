@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+		function test() {
+			//make canvas
+			var canvas = document.createElement('canvas');
+			canvas.width = canvas.height = 1000;
+			document.body.appendChild(canvas);
+			var ctx = canvas.getContext('2d');
+			
+			//translate to center and scale
+			ctx.translate(500, 500);
+			ctx.scale(20, 20);			
+
+			//make Image
+			var img = new Image();
+			img.onload = function() {
+				//append resized image
+				ctx.drawImage(img, -1000/40, -1000/40, 1000/20, 1000/20);
+			};
+			img.src = "google-chrome-logo.jpg";
+			
+		}
+		</script>
+	</head>
+	<body onload="test();">
+	</body>
+</html>
