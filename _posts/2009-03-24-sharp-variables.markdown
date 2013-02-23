@@ -1,4 +1,4 @@
---- 
+---
 wordpress_id: 543
 layout: post
 title: Sharp Variables
@@ -44,12 +44,12 @@ However, there's no <em>literal</em> way of creating, reading or modifying that 
 <h4>Manipulating Recursive Structures in Lisp</h4>
 For manipulating/printing recursive data structures in Common Lisp we first assign <em>T</em> to the global variable <em>*print-circle*</em>
 
-{% highlight lisp %}
+{% highlight cl %}
 (setq *print-circle* T)
 {% endhighlight %}
 
 We can define a recursive structure just as we did with Python, by defining some base structure and then modifying the structure to be recursive:
-{% highlight lisp %}
+{% highlight cl %}
 (defvar *my-rec-var* (list 1 2 3 _))
 ;Replace the underscore placeholder with a self-reference
 (setf (fourth *my-rec-var*) *my-rec-var*)
@@ -57,7 +57,7 @@ We can define a recursive structure just as we did with Python, by defining some
 
 The final structure is represented with sharp variables:
 
-{% highlight lisp %}
+{% highlight cl %}
 &gt;&gt;&gt; (print *my-rec-var*)
 #1=(1 2 3 #1#)
 {% endhighlight %}
@@ -67,7 +67,7 @@ This is just as the "Mathematical" definition we gave above:
 
 What's interesting about this "serialization format" is that expressions involving sharp variables are <b>truly expressions</b>: these "objects" can be <em>read</em> and <em>manipulated</em> just like any other structure:
 
-{% highlight lisp %}
+{% highlight cl %}
 &gt;&gt;&gt; (defvar *another-rec-var* &#145;#1=(1 2 3 #1#))
 #1=(1 2 3 #1#)
 
