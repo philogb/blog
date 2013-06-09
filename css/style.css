@@ -154,6 +154,10 @@ ul.posts span {
   width: 80px;
 }
 
+#post p > img {
+  width: 500px;
+}
+
 #bio > div {
   color: #333;
 }
