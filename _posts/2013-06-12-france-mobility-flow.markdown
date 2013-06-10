@@ -68,7 +68,7 @@ One of the challenges for the visualization was to display data at the county le
 I first tried to just simply load the SVG county map of France, but this
 just took too long:
 
-<video id="movie" controls="true" width="480">
+<video controls="true" width="480">
   <source src="/blog/assets/france/france-svg.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></source>
   <source src="/blog/assets/france/france-svg.webm"></source>
 </video>
