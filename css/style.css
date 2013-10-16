@@ -155,7 +155,7 @@ ul.posts span {
 }
 
 #post p > img {
-  width: 500px;
+  max-width: 500px;
 
 
 }
