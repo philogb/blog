@@ -7,7 +7,11 @@ categories: [JavaScript, WebGL, PhiloGL]
 Last night I presented at the [data visualization meetup at Twitter HQs](http://www.meetup.com/visualizemydata/events/141900982/).
 It was really awesome to meet the people there and nerd-out about visualization related things.
 
-You can find my presentation [here](http://www.slideshare.net/philogb/interactives-at-twitter-27259565).
+You can find the slids for my presentation [here](http://www.slideshare.net/philogb/interactives-at-twitter-27259565). Also the video is here:
+
+<iframe width="500" height="375" src="//www.youtube.com/embed/Bgu_OsA7qNQ" frameborder="0" allowfullscreen="true">
+</iframe>
+
 The presentation was mostly about the process of releasing public-facing
 data visualizations at Twitter, and also some analysis on one project
 we're currently working on called Laika.
