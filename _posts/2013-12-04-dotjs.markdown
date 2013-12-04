@@ -1,0 +1,120 @@
+---
+layout: post
+title: DotJS
+categories: [Talk]
+---
+
+Last Monday I was in Paris for [DotJS](http://twitter.com/dotjseu),
+organized by Sylvain Zimmer and [dotConferences](http://www.dotconferences.eu/),
+arguably the biggest JavaScript conference in Europe, with more than 900
+JavaScript "savants".
+
+<blockquote class="twitter-tweet" lang="fr">
+<p>
+<a href="#">#dotjs</a> from the front. Thems be a lot of people <a href="http://t.co/RqEXbrbJEl">http://t.co/RqEXbrbJEl</a>
+</p>
+&mdash; Remy Sharp (@rem)
+<a href="https://twitter.com/rem/statuses/407985485324505089">3 Décembre 2013</a>
+</blockquote>
+
+<script async="true" src="//platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+
+My talk was titled "Growing a Language for Graphics", which was about
+JavaScript as seen from the eyes of a data visualization / graphics person.
+By having a look at GLSL - a domain specific language (DSL) for graphics used in WebGL
+- I talk about what language features would help graphic developers on the Web and I show the
+long history of trying to standardize operator overloading into JavaScript.
+
+<script async="true" class="speakerdeck-embed" data-id="51077b503f180131c51876c2ec7c4e6f" data-ratio="1.77777777777778" src="//speakerdeck.com/assets/embed.js">
+</script>
+
+I've been wanting to a give a talk about this topic for a long time,
+having witnessed most of the discussions around operator overloading in
+JavaScript and it's different proposals since early 2007. Going from
+[generic functions](http://www.ecmascript.org/es4/spec/overview.pdf) to a [double-dispatch approach](https://mail.mozilla.org/pipermail/es-discuss/2009-January/008535.html) to [multimethods](https://mail.mozilla.org/pipermail/es-discuss/2009-June/009603.html), to
+[value proxies](http://wiki.ecmascript.org/doku.php?id=strawman:value_proxies) and finally
+[value objects](http://wiki.ecmascript.org/doku.php?id=strawman:value_objects), I must say that my interest in having this feature into JavaScript never faded.
+
+My talk is inpired on a great talk by Guy Steele Jr. titled
+"Growing a Language" and that I definitely recommend you to watch:
+
+<iframe width="500" height="375" src="//www.youtube.com/embed/_ahvzDzKdB0" frameborder="0" allowfullscreen="true">
+</iframe>
+
+In case you're interested in knowing more about operator overloading
+proposals in JavaScript I'm pasting a dump of the bibliography here:
+
+## Why operator overloading
+
+http://www.jroller.com/cpurdy/entry/the_seven_habits_of_highly1
+
+## ES4 overview
+
+http://www.ecmascript.org/es4/spec/overview.pdf
+
+## Generic functions
+
+https://mail.mozilla.org/pipermail/es-discuss/2007-November/005043.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2007-November/005049.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2007-November/005052.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2007-November/005053.html
+
+## 2009 Operator Overloading proposal
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-January/008535.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-January/008541.html
+
+http://wiki.ecmascript.org/doku.php?id=strawman:operator_overloading_with_double_dispatch
+
+## ExtendScript OO
+
+http://forums.adobe.com/thread/646268
+
+http://www.indiscripts.com/post/2010/05/operator-overloading-with-extendscript
+
+## Operator Overloading revisited
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-June/009603.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-June/009604.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-June/
+
+## Value types
+
+http://wiki.ecmascript.org/doku.php?id=strawman:value_types
+
+Decimal type:
+
+http://intertwingly.net/stories/2008/09/20/estest.html
+
+https://mail.mozilla.org/pipermail/es-discuss/2009-January/008646.html
+
+Value types page started:
+
+https://mail.mozilla.org/pipermail/es-discuss/2010-January/010677.html
+
+## Value objects
+
+http://wiki.ecmascript.org/doku.php?id=strawman:value_objects
+
+https://mail.mozilla.org/pipermail/es-discuss/2012-March/021411.html
+
+http://www.slideshare.net/BrendanEich/value-objects
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=749786
+
+## Value proxies
+
+http://wiki.ecmascript.org/doku.php?id=strawman:value_proxies
+
+## ES next
+
+https://mail.mozilla.org/pipermail/es-discuss/2013-April/029949.html
+
+
