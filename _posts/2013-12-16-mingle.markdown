@@ -1,0 +1,58 @@
+---
+layout: post
+title: Multilevel Agglomerative Edge Bundling in JS
+categories: [JavaScript]
+---
+
+
+<blockquote class="twitter-tweet" lang="fr">
+<p>Hello data visualizers! I just released a JS version of the MINGLE edge bundling technique:
+<a href="https://t.co/Gvm29H6gf2">https://t.co/Gvm29H6gf2</a>
+<a href="http://t.co/SJadXUK2nW">pic.twitter.com/SJadXUK2nW</a>
+</p>
+&mdash; nico (@philogb)
+<a href="https://twitter.com/philogb/statuses/411543867037478912">13 Décembre 2013</a>
+</blockquote>
+
+<script async="true" src="//platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+
+This is a JavaScript implementation of the paper [Multilevel Agglomerative Edge Bundling
+for Visualizing Large Graphs](http://www2.research.att.com/~yifanhu/PUB/edge_bundling.pdf)
+ (Emden R. Gansner, Yifan Hu, Stephen North, Carlos Scheidegger).
+
+The edge bundling algorithm groups edges together to minimize the amount of
+ink used to render a graph. This particular paper introduces a fast
+technique to perform edge bundling.
+
+Take for example this map connecting locations between the east coast in
+the US and western Europe:
+
+![easteurope image 1](https://raw.github.com/philogb/mingle/master/img/easteurope1.png)
+
+The algorithm creates a proximity graph for the edges where each of the
+edges is represented by a node. Then the algorithm bundles edges as long
+as we're saving some ink in the final rendering. Here's an intermediate
+step on the bundling animation:
+
+![easteurope image 1](https://raw.github.com/philogb/mingle/master/img/easteurope2.png)
+
+And here's the final result:
+
+![easteurope image 1](https://raw.github.com/philogb/mingle/master/img/easteurope3.png)
+
+
+This implementation is solely based on the paper. The license for the code is MIT.
+
+## Examples
+
+This simple example shows links connecting locations in the Bay Area.
+The rendering uses 2D Canvas but
+could use any other rendering API.
+
+[You can see an example here](http://philogb.github.io/mingle/example).
+
+![Image of Edge bundling example](https://raw.github.com/philogb/mingle/master/img/sfcommute.png)
+
+
+
