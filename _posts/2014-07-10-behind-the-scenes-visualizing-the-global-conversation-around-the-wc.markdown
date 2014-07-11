@@ -28,12 +28,11 @@ see things such as:
 
 This was done by analyzing hashflag mentions in Tweets.
 
-
-#Top visualization
+We went through a few iterations for the top visualization:
 
 ##First iteration
 
-We went through a few iterations for the top visualization. The first take
+ The first take
 we had on it merged both the menu and the graph in one single graphic:
 
 ![first iteration](/blog/assets/wcmentions/first.png)
