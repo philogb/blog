@@ -365,6 +365,7 @@ for (var i = 0; i < 1000; i++) {
 {% endhighlight %}
 
 The augmented prototype object version is the fastest now. There's an
-interesting jump in Chrome 25.
+interesting jump in Chrome 25. You can follow the thread [here](https://twitter.com/philogb/status/546355637899128832)
+to understand exactly how this works.
 
 So are you targeting faster constructors, class definitions or methods? The fact is that any of these three stages can be optimized, but generally with a tradeoff.
